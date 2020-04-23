@@ -10,7 +10,7 @@
 	},
 	"extra": {
     "scripts-description": {
-      "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+      "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer"
     }
   }
 }
