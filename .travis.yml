@@ -34,15 +34,6 @@ matrix:
   - name: "Coding standard check"
     php: 7.4
     env: WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1
-  - name: "E2E tests"
-    php: 7.4
-    script:
-      - composer require wp-cli/i18n-command
-      - npm run build
-      - docker-compose up --build -d
-      - bash tests/bin/run-e2e-CI.sh
-    after_script:
-      - docker-compose down -v
   - name: "Unit tests code coverage"
     php: 7.4
     env: WP_VERSION=latest WP_MULTISITE=0 RUN_CODE_COVERAGE=1
@@ -85,8 +76,8 @@ before_script:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
 
 script:
-  - bash phpunit
-  - bash phpcs
+  - phpunit
+  - phpcs
 
 # Specifies that Travis should create builds for master and release branches and also tags.
 branches:
