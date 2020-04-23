@@ -15,6 +15,7 @@ if [[ ${RUN_PHPCS} == 1 ]]; then
     	composer require woocommerce/woocommerce-sniffs
 
 		echo "Running Code Sniffer."
-		./vendor/bin/phpcs --ignore=$IGNORE --encoding=utf-8 -s -n -p $CHANGED_FILES
+		ls
+		./vendor/bin/phpcs phpcbf . --standard=WordPress --extensions=php --ignore=*/tests/*
 	fi
 fi
