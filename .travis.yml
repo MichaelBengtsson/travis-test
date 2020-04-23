@@ -76,7 +76,6 @@ before_script:
     fi
   - nvm install 10
   - npm install
-  - composer install --no-dev
   - |
     # Install WP Test suite, install PHPUnit globally:
     if [[ ! -z "$WP_VERSION" ]]; then
@@ -88,9 +87,6 @@ before_script:
 script:
   - bash tests/bin/phpunit.sh
   - bash tests/bin/phpcs.sh
-
-after_script:
-  - bash tests/bin/travis.sh after
 
 # Specifies that Travis should create builds for master and release branches and also tags.
 branches:
