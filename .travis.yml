@@ -34,3 +34,7 @@ matrix:
 
 script:
 - bash tests/bin/phpcs.sh
+
+branches:
+  only:
+    - master
