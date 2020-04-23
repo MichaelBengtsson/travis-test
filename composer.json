@@ -33,46 +33,5 @@
 		  "woocommerce/woocommerce-blocks": "dist"
 	  },
 	  "sort-packages": true
-	},
-	"scripts": {
-	  "post-install-cmd": [
-		"sh ./bin/package-update.sh"
-	  ],
-	  "post-update-cmd": [
-		"sh ./bin/package-update.sh"
-	  ],
-	  "test": [
-		"phpunit"
-	  ],
-	  "phpcs": [
-		"phpcs -s -p"
-	  ],
-	  "phpcs-pre-commit": [
-		"phpcs -s -p -n"
-	  ],
-	  "phpcbf": [
-		"phpcbf -p"
-	  ],
-	  "makepot-audit": [
-		"wp i18n make-pot . --exclude=\".github,.wordpress-org,bin,sample-data,node_modules,tests\" --slug=woocommerce"
-	  ],
-	  "makepot": [
-		"@makepot-audit --skip-audit"
-	  ]
-	},
-	"extra": {
-	  "installer-paths": {
-		"packages/action-scheduler": ["woocommerce/action-scheduler"],
-		"packages/woocommerce-rest-api": ["woocommerce/woocommerce-rest-api"],
-		"packages/woocommerce-blocks": ["woocommerce/woocommerce-blocks"],
-		"packages/woocommerce-admin": ["woocommerce/woocommerce-admin"]
-	  },
-	  "scripts-description": {
-		"test": "Run unit tests",
-		"phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
-		"phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier",
-		"makepot-audit": "Generate i18n/langauges/woocommerce.pot file and run audit",
-		"makepot": "Generate i18n/langauges/woocommerce.pot file"
-	  }
 	}
   }
