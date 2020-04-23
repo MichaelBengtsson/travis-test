@@ -17,10 +17,6 @@ cache:
 
 # Test main supported versions of PHP against latest WP.
 php:
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
   - 7.4
 
 env:
@@ -33,7 +29,10 @@ matrix:
   include:
   - name: "Coding standard check"
     php: 7.4
-    env: WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1
+	env: WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1
+	- name: "Unit tests code coverage"
+    php: 7.4
+    env: WP_VERSION=latest WP_MULTISITE=0 RUN_CODE_COVERAGE=1
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
