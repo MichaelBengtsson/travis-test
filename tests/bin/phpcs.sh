@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 echo "Maybe code sniffer"
 echo ${RUN_PHPCS}
+echo $TRAVIS_COMMIT_RANGE
+echo $IGNORE
+echo $CHANGED_FILES
 if [[ ${RUN_PHPCS} == 1 ]]; then
 	echo "in if cs"
 	CHANGED_FILES=`git diff --name-only --diff-filter=ACMR $TRAVIS_COMMIT_RANGE | grep \\\\.php | awk '{print}' ORS=' '`
