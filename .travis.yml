@@ -30,13 +30,6 @@ matrix:
 
    before_script:
     - export PATH="$HOME/.composer/vendor/bin:$PATH"
-    - |
-    # Remove Xdebug for a huge performance increase:
-    if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
-        phpenv config-rm xdebug.ini
-        else
-        echo "xdebug.ini does not exist"
-    fi
     - composer install --no-dev
 
 script:
