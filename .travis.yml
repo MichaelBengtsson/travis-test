@@ -19,7 +19,7 @@ php:
   - 7.4
 
 env:
-  - WP_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1
 
 matrix:
    fast_finish: true
