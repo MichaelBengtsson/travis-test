@@ -60,7 +60,14 @@ matrix:
     env: WP_VERSION=5.0 WP_MULTISITE=0
   allow_failures:
   - php: 7.4
-    env: WP_VERSION=latest WP_MULTISITE=0 RUN_CODE_COVERAGE=1
+  env: WP_VERSION=latest WP_MULTISITE=0 RUN_CODE_COVERAGE=1
+  
+  # Specifies that Travis should create builds for master and release branches and also tags.
+  branches:
+	only:
+	  - master
+	  - /^\d+\.\d+(\.\d+)?(-\S*)?$/
+	  - /^release\//
 
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
@@ -91,10 +98,3 @@ script:
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
       phpcs
     fi
-
-# Specifies that Travis should create builds for master and release branches and also tags.
-branches:
-  only:
-    - master
-    - /^\d+\.\d+(\.\d+)?(-\S*)?$/
-    - /^release\//
