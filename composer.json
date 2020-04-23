@@ -1,0 +1,16 @@
+{
+    "require-dev": {
+		"phpunit/phpunit": "7.5.20",
+		"woocommerce/woocommerce-sniffs": "0.0.10",
+    },
+	"scripts": {
+		"phpcs": [
+			"phpcs -s -p"
+		]
+	},
+	"extra": {
+    "scripts-description": {
+      "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+    }
+  }
+}
