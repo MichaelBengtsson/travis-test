@@ -188,10 +188,6 @@ class Krokedil_Unit_Tests_Bootstrap {
 	}
 
 	public function install_wc() {
-
-		// Clean existing install first.
-		include $this->plugin_dir . '/uninstall.php';
-
 		WC_Install::install();
 
 		// Initialize the WC API extensions.
