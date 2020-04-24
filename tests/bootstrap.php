@@ -189,29 +189,24 @@ class Krokedil_Unit_Tests_Bootstrap {
 
 	public function install_wc() {
 
-		echo 'Installing WooCommerce...' . PHP_EOL;
+		// Clean existing install first.
+		include $this->plugin_dir . '/uninstall.php';
+
 		WC_Install::install();
 
-		if ( version_compare( WC_VERSION, '4.0.0', '>=' ) ) {
-			Automattic\WooCommerce\Admin\install::install();
-		}
+		// Initialize the WC API extensions.
+		\Automattic\WooCommerce\Admin\Install::create_tables();
+		\Automattic\WooCommerce\Admin\Install::create_events();
 
-		// reload capabilities after install, see https://core.trac.wordpress.org/ticket/28374
-		if ( version_compare( $GLOBALS['wp_version'], '4.9', '>=' ) && method_exists( $GLOBALS['wp_roles'], 'for_site' ) ) {
-			/** @see: https://core.trac.wordpress.org/ticket/38645 */
-			$GLOBALS['wp_roles']->for_site();
-		} elseif ( version_compare( $GLOBALS['wp_version'], '4.7', '>=' ) ) {
-			// Do the right thing based on https://core.trac.wordpress.org/ticket/23016
-			$GLOBALS['wp_roles'] = new WP_Roles();
-		} else {
-			// Fall back to the old method.
+		// Reload capabilities after install, see https://core.trac.wordpress.org/ticket/28374.
+		if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
 			$GLOBALS['wp_roles']->reinit();
+		} else {
+			$GLOBALS['wp_roles'] = null; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			wp_roles();
 		}
 
-		WC()->init();
-		WC()->payment_gateways();
-
-		echo 'WooCommerce Finished Installing...' . PHP_EOL;
+		echo esc_html( 'Installing WooCommerce...' . PHP_EOL );
 	}
 }
 
