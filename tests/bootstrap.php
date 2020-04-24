@@ -125,13 +125,11 @@ class Krokedil_Unit_Tests_Bootstrap {
 	 * @since 1.0.0
 	 */
 	public function load_plugin() {
-		echo 'load plugins - lookHere';
 		if ( ! empty( $this->dependencies ) ) {
-			echo 'dependency - lookHere';
 			foreach ( $this->dependencies as $dir => $plugin_file ) {
 				echo $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
-				echo 'require_once - lookHere';
 				require_once $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
+				WC_Install::run_manual_database_update();
 			}
 		}
 		require_once $this->plugin_dir . DIRECTORY_SEPARATOR . $this->config['name'];
