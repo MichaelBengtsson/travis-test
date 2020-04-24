@@ -90,6 +90,8 @@ class Krokedil_Unit_Tests_Bootstrap {
 		// activate plugin.
 		tests_add_filter( 'muplugins_loaded', array( $this, 'load_plugin' ) );
 
+		tests_add_filter( 'setup_theme', array( $this, 'install_wc' ) );
+
 		// load the WP testing environment.
 		require_once $this->wp_tests_dir . '/includes/bootstrap.php';
 
@@ -167,8 +169,6 @@ class Krokedil_Unit_Tests_Bootstrap {
 		require_once $this->tests_dir . '/framework/helpers/woocommerce/customer/class-krokedil-customer.php';
 		// shipping
 		require_once $this->tests_dir . '/framework/helpers/woocommerce/shipping/class-krokedil-wc-shipping.php';
-
-		do_action( 'activate_plugin', trim( 'woocommerce/woocommerce.php' ) );
 	}
 
 	/**
@@ -185,6 +185,34 @@ class Krokedil_Unit_Tests_Bootstrap {
 		}
 
 		return self::$instance;
+	}
+
+	public function install_wc() {
+
+		echo 'Installing WooCommerce...' . PHP_EOL;
+
+		define( 'WP_UNINSTALL_PLUGIN', true );
+
+		include $this->modules_dir . '/woocommerce/uninstall.php';
+
+		WC_Install::install();
+
+		// reload capabilities after install, see https://core.trac.wordpress.org/ticket/28374
+		if ( version_compare( $GLOBALS['wp_version'], '4.9', '>=' ) && method_exists( $GLOBALS['wp_roles'], 'for_site' ) ) {
+			/** @see: https://core.trac.wordpress.org/ticket/38645 */
+			$GLOBALS['wp_roles']->for_site();
+		} elseif ( version_compare( $GLOBALS['wp_version'], '4.7', '>=' ) ) {
+			// Do the right thing based on https://core.trac.wordpress.org/ticket/23016
+			$GLOBALS['wp_roles'] = new WP_Roles();
+		} else {
+			// Fall back to the old method.
+			$GLOBALS['wp_roles']->reinit();
+		}
+
+		WC()->init();
+		WC()->payment_gateways();
+
+		echo 'WooCommerce Finished Installing...' . PHP_EOL;
 	}
 }
 
