@@ -125,8 +125,12 @@ class Krokedil_Unit_Tests_Bootstrap {
 	 * @since 1.0.0
 	 */
 	public function load_plugin() {
+		echo 'load plugins - lookHere';
 		if ( ! empty( $this->dependencies ) ) {
+			echo 'dependency - lookHere';
 			foreach ( $this->dependencies as $dir => $plugin_file ) {
+				echo $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
+				echo 'require_once - lookHere';
 				require_once $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
 			}
 		}
@@ -164,7 +168,7 @@ class Krokedil_Unit_Tests_Bootstrap {
 		// customer.
 		require_once $this->tests_dir . '/framework/helpers/woocommerce/customer/interface-krokedil-customer.php';
 		require_once $this->tests_dir . '/framework/helpers/woocommerce/customer/class-krokedil-customer.php';
-		//shipping
+		// shipping
 		require_once $this->tests_dir . '/framework/helpers/woocommerce/shipping/class-krokedil-wc-shipping.php';
 	}
 
