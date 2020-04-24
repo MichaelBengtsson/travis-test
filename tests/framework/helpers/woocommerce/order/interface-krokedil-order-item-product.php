@@ -11,34 +11,20 @@
 /**
  * Krokedil helper class.
  */
-interface Krokedil_Order_Status {
+interface IKrokedil_Order_Item_Product {
 
 	/**
-	 * List of order statuses
-	 */
-	const STATUSES = [
-		self::PENDING,
-		self::ON_HOLD,
-		self::FAILED,
-		self::PROCESSING,
-		self::CANCELLED,
-		self::COMPLETED,
-		self::REFUNDED,
-	];
-
-	const PENDING    = 'pending';
-	const ON_HOLD    = 'on-Hold';
-	const FAILED     = 'failed';
-	const PROCESSING = 'processing';
-	const CANCELLED  = 'cancelled';
-	const COMPLETED  = 'completed';
-	const REFUNDED   = 'refunded';
-
-	/**
-	 * Returns order statuses
+	 * Indicate whether to save or not.
 	 *
-	 * @return array order statuses
+	 * @return bool
 	 */
-	public function get_statuses() : array;
+	public function save() : bool;
+
+	/**
+	 * Creates WooCommerce product
+	 *
+	 * @return WC_Product
+	 */
+	public function create() : WC_Order_Item_Product;
 
 }

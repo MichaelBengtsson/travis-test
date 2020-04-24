@@ -107,7 +107,7 @@ class Krokedil_Order implements IKrokedil_WC_Order, Krokedil_Order_Status {
 		$this->set_data( $data );
 		$this->set_rate( $rate );
 		$this->items = $items;
-		WC_Helper_Shipping::create_simple_flat_rate();
+		Krokedil_WC_Shipping::create_simple_flat_rate();
 	}
 
 	/**
@@ -209,6 +209,24 @@ class Krokedil_Order implements IKrokedil_WC_Order, Krokedil_Order_Status {
 	 */
 	public function get_statuses(): array {
 		return Krokedil_Order_Status::STATUSES;
+	}
+
+	/**
+	 * Return order id.
+	 *
+	 * @return int
+	 */
+	public function get_order_id(): int {
+		return $this->data['order_id'];
+	}
+
+	/**
+	 * Return order id.
+	 *
+	 * @return int
+	 */
+	public function get_customer_id(): int {
+		return $this->data['customer_id'];
 	}
 
 	/**
