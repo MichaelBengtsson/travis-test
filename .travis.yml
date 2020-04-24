@@ -16,6 +16,10 @@ cache:
 
 # Test main supported versions of PHP against latest WP.
 php:
+  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
   - 7.4
 
 env:
@@ -27,6 +31,10 @@ before_script:
     - composer install
     - bash tests/bin/install-wp-tests.sh test-travis root '' localhost $WP_VERSION
     - bash tests/bin/travis.sh
+    - |
+      if [[ ! -z "$WP_VERSION" ]]; then
+        composer global require "phpunit/phpunit=5.7.*|7.5.*"
+      fi
 
 script:
 - bash tests/bin/phpcs.sh
