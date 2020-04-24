@@ -16,24 +16,30 @@ cache:
 
 # Test main supported versions of PHP against latest WP.
 php:
-  - 7.4
+  - 7.0
 
 env:
-  - WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1
+  - WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=0 WC_VERSION=4.0.0
 
 matrix:
    fast_finish: true
    include:
    - name: "Coding standard check"
-   php: 7.4
-   env: WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1
+   php: 7.0
+   env: WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1 WC_VERSION=4.0.0
+   - name: "Unit Test Check"
+   php: 7.0
+   env: WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=0 WC_VERSION=4.0.0
 
    before_script:
     - export PATH="$HOME/.composer/vendor/bin:$PATH"
     - composer install --no-dev
+    - bash tests/bin/install.sh wcs_test root '' localhost $WP_VERSION
+    - bash tests/bin/travis.sh before $TRAVIS_PHP_VERSION
 
 script:
 - bash tests/bin/phpcs.sh
+- bash tests/bin/phpunit.sh
 
 branches:
   only:
