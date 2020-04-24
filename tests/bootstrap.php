@@ -129,7 +129,6 @@ class Krokedil_Unit_Tests_Bootstrap {
 			foreach ( $this->dependencies as $dir => $plugin_file ) {
 				echo $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
 				require_once $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
-				WC_Install::run_manual_database_update();
 			}
 		}
 		require_once $this->plugin_dir . DIRECTORY_SEPARATOR . $this->config['name'];
@@ -168,6 +167,8 @@ class Krokedil_Unit_Tests_Bootstrap {
 		require_once $this->tests_dir . '/framework/helpers/woocommerce/customer/class-krokedil-customer.php';
 		// shipping
 		require_once $this->tests_dir . '/framework/helpers/woocommerce/shipping/class-krokedil-wc-shipping.php';
+
+		do_action( 'activate_plugin', trim( 'woocommerce/woocommerce.php' ) );
 	}
 
 	/**
