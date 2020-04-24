@@ -134,26 +134,6 @@ class Test_Order extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test: get_customer_id
-	 */
-	public function test_get_customer_id() {
-		$order_helper = new Krokedil_Order();
-		$order        = $order_helper->create();
-		$this->assertEquals( $order_helper->get_customer_id(), $order->get_customer_id() );
-
-		$order->set_customer_id( 10 );
-		$this->assertEquals( 10, $order->get_customer_id() );
-	}
-
-	/**
-	 * Test get customer
-	 */
-	public function test_get_customer() {
-		$order = ( new Krokedil_Order() )->create();
-		$this->assertInstanceOf( 'WC_Customer', $order->get_customer() );
-	}
-
-	/**
 	 * Test: get_discount_total
 	 */
 	public function test_get_discount_total() {

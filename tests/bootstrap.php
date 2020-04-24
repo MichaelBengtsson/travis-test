@@ -192,6 +192,7 @@ class Krokedil_Unit_Tests_Bootstrap {
 		echo 'Installing WooCommerce...' . PHP_EOL;
 
 		WC_Install::install();
+		Automattic\WooCommerce\Admin\install::install();
 
 		// reload capabilities after install, see https://core.trac.wordpress.org/ticket/28374
 		if ( version_compare( $GLOBALS['wp_version'], '4.9', '>=' ) && method_exists( $GLOBALS['wp_roles'], 'for_site' ) ) {
