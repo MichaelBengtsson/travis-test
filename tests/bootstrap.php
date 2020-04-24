@@ -191,10 +191,6 @@ class Krokedil_Unit_Tests_Bootstrap {
 
 		echo 'Installing WooCommerce...' . PHP_EOL;
 
-		define( 'WP_UNINSTALL_PLUGIN', true );
-
-		include $this->modules_dir . '/woocommerce/uninstall.php';
-
 		WC_Install::install();
 
 		// reload capabilities after install, see https://core.trac.wordpress.org/ticket/28374
