@@ -16,7 +16,7 @@ cache:
 
 # Test main supported versions of PHP against latest WP.
 php:
-  - 7.0
+  - 7.4
 
 env:
   - WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1 WC_VERSION=4.0.0
