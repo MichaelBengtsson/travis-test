@@ -1,6 +1,4 @@
-echo "Maybe Running PHPUnit"
-echo ${RUN_PHPCS}
 if [[ ${RUN_PHPCS} == 0 ]]; then
-	echo "Running PHPUnit"
+	git clone --depth 1 --branch ${WC_VERSION} git@github.com:woocommerce/woocommerce.git '../woocommerce'
 	$HOME/.composer/vendor/bin/phpunit -c phpunit.xml $@
 fi
