@@ -164,7 +164,8 @@ class Krokedil_Unit_Tests_Bootstrap {
 		// customer.
 		require_once $this->tests_dir . '/framework/helpers/woocommerce/customer/interface-krokedil-customer.php';
 		require_once $this->tests_dir . '/framework/helpers/woocommerce/customer/class-krokedil-customer.php';
-
+		//shipping
+		require_once $this->tests_dir . '/framework/helpers/woocommerce/shipping/class-krokedil-wc-shipping.php';
 	}
 
 	/**

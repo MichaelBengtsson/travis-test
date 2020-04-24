@@ -71,7 +71,7 @@ abstract class AKrokedil_WC_Product implements IKrokedil_WC_Product {
 	];
 
 	/**
-	 * Krokedil_WC_Product_Helper constructor.
+	 * AKrokedil_WC_Product_Helper constructor.
 	 *
 	 * @param array $data data.
 	 */

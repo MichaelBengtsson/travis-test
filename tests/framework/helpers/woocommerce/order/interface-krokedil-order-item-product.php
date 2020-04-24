@@ -1,28 +1,44 @@
-<?php //phpcs:ignore
+<?php // phpcs:ignore
+/**
+ * Helper order class
+ */
 
 /**
- * Interface
+ * This is the class just for testing purpose
  *
  * @package Krokedil/tests
  */
-
 /**
- * Interface.
+ * Krokedil helper class.
  */
-interface IKrokedil_Order_Item_Product extends IKrokedil_WC {
+interface Krokedil_Order_Status {
 
 	/**
-	 * Indicate whether to save or not.
-	 *
-	 * @return bool
+	 * List of order statuses
 	 */
-	public function save() : bool;
+	const STATUSES = [
+		self::PENDING,
+		self::ON_HOLD,
+		self::FAILED,
+		self::PROCESSING,
+		self::CANCELLED,
+		self::COMPLETED,
+		self::REFUNDED,
+	];
+
+	const PENDING    = 'pending';
+	const ON_HOLD    = 'on-Hold';
+	const FAILED     = 'failed';
+	const PROCESSING = 'processing';
+	const CANCELLED  = 'cancelled';
+	const COMPLETED  = 'completed';
+	const REFUNDED   = 'refunded';
 
 	/**
-	 * Creates WooCommerce order.
+	 * Returns order statuses
 	 *
-	 * @return WC_Order_Item_Product
+	 * @return array order statuses
 	 */
-	public function create() : WC_Order_Item_Product;
+	public function get_statuses() : array;
 
 }
