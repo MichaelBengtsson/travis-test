@@ -1,5 +1,3 @@
-if [[ ${RUN_PHPCS} == 1 ]]; then
-	exit
+if [[ ${RUN_PHPCS} == 0 ]]; then
+	$HOME/.composer/vendor/bin/phpunit -c phpunit.xml.dist $@
 fi
-
-$HOME/.composer/vendor/bin/phpunit -c phpunit.xml $@
