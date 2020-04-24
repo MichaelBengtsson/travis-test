@@ -19,19 +19,10 @@ php:
   - 7.0
 
 env:
+  - WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1 WC_VERSION=4.0.0
   - WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=0 WC_VERSION=4.0.0
 
-matrix:
-   fast_finish: true
-   include:
-   - name: "Coding standard check"
-   php: 7.0
-   env: WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=1 WC_VERSION=4.0.0
-   - name: "Unit Test Check"
-   php: 7.0
-   env: WP_VERSION=latest WP_MULTISITE=0 RUN_PHPCS=0 WC_VERSION=4.0.0
-
-   before_script:
+before_script:
     - export PATH="$HOME/.composer/vendor/bin:$PATH"
     - composer install --no-dev
     - bash tests/bin/install.sh wcs_test root '' localhost $WP_VERSION
