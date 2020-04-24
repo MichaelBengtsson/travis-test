@@ -24,7 +24,7 @@ env:
 
 before_script:
     - export PATH="$HOME/.composer/vendor/bin:$PATH"
-    - composer install --no-dev
+    - composer install
     - bash tests/bin/install.sh wcs_test root '' localhost $WP_VERSION
     - bash tests/bin/travis.sh before $TRAVIS_PHP_VERSION
 
