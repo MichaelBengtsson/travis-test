@@ -49,7 +49,6 @@ matrix:
 
 before_script:
     - export PATH="$HOME/.composer/vendor/bin:$PATH"
-    - composer install --no-dev
     - bash tests/bin/install-wp-tests.sh test-travis root '' localhost $WP_VERSION
     - bash tests/bin/travis.sh
     - |
