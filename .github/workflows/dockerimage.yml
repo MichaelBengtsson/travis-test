@@ -24,5 +24,8 @@ jobs:
           MYSQL_ROOT_PASSWORD: "password"
     steps:
     - name: Testing
+      uses: actions/checkout@v2
+      with:
+        repository: woocommerce/woocommerce
       run: |
-        phpunit
+        ls
