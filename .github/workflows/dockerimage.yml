@@ -75,7 +75,6 @@ jobs:
         phpunit -c main/phpunit.xml
   PHPCS:
     name: PHPCS
-    strategy:
     runs-on: ubuntu-latest
     container:
       image: php:7.0.0-apache
@@ -108,4 +107,4 @@ jobs:
           composer global require dealerdirect/phpcodesniffer-composer-installer:0.5.0 wp-coding-standards/wpcs:${{ matrix.wpcs }} automattic/vipwpcs:${{ matrix.vipcs }}
     - name: Run PHPCS Coding Standards
       run: |
-          ~/.composer/vendor/bin/phpcs $GITHUB_WORKSPACE
+          ~/.composer/vendor/bin/phpcs main
