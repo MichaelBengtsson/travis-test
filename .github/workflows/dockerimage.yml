@@ -21,7 +21,7 @@ jobs:
       ports:
       - 80
       volumes:
-      - gh:/var/www/html
+      - /var/www/html
     services:
       mysql:
         image: mysql:${{ matrix.mysql }}
@@ -64,14 +64,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v1
 
-    - name: Run yarn install
-      run: |
-        yarn install
-
-    - name: Run yarn build
-      run: |
-        yarn run build --if-present
-
     - name: Run composer install
       run: |
         composer install --prefer-dist
@@ -86,7 +78,7 @@ jobs:
 
     - name: Run PHPUnit
       run: |
-        ~/.composer/vendor/bin/phpunit gh
+        ~/.composer/vendor/bin/phpunit $GITHUB_WORKSPACE
 
     - name: Install PHPCS with WordPress Coding Standards
       run: |
@@ -94,6 +86,4 @@ jobs:
     
     - name: Run PHPCS Coding Standards
       run: |
-        ~/.composer/vendor/bin/phpcs gh
-  volumes:
-    gh: {}
+        ~/.composer/vendor/bin/phpcs $GITHUB_WORKSPACE
