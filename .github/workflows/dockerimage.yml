@@ -113,6 +113,8 @@ jobs:
         rm .travis.yml
         rm .gitignore
         rm .phpcs.xml.dist
+        rm phpunit.xml
+        rm composer.json
         rm -R tests
         rm -R .github
         git config --global user.email "michael@krokedil.se"
