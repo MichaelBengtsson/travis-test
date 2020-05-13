@@ -111,7 +111,6 @@ jobs:
         BRANCH_NAME=$(echo $GITHUB_REF | grep -oP '(?<=refs\/heads\/).*')
         rm .gitignore
         rm .travis.yml
-        rm .gitignore
         rm .phpcs.xml.dist
         rm phpunit.xml
         rm composer.json
