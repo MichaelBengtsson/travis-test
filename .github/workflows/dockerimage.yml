@@ -34,7 +34,4 @@ jobs:
         path: woocommerce
     - name: Install WP Testsuite
       run: |
-        ls
-        cd main
-        ls
-        ./install-wp-tests.sh wordpress_test root password mysql latest true
+        ./main/tests/bin/install-wp-tests.sh wordpress_test root password mysql latest true
