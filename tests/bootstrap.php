@@ -90,7 +90,8 @@ class Krokedil_Unit_Tests_Bootstrap {
 		// activate plugin.
 		tests_add_filter( 'muplugins_loaded', array( $this, 'load_plugin' ) );
 
-		// tests_add_filter( 'setup_theme', array( $this, 'install_wc' ) );
+		tests_add_filter( 'setup_theme', array( $this, 'install_wc' ) );
+
 		// load the WP testing environment.
 		require_once $this->wp_tests_dir . '/includes/bootstrap.php';
 
@@ -187,6 +188,8 @@ class Krokedil_Unit_Tests_Bootstrap {
 	}
 
 	public function install_wc() {
+		$this->load_plugin();
+
 		WC_Install::install();
 
 		// Initialize the WC API extensions.
