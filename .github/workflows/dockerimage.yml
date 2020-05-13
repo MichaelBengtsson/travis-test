@@ -41,7 +41,6 @@ jobs:
     name: 5.2.0 WP - 4.0.0 WC
     strategy:
       matrix:
-        php: [7.3]
         wordpress: [5.2.0]
         woocommerce: [4.0.0]
     runs-on: ubuntu-latest
@@ -111,6 +110,12 @@ jobs:
       run: |
         BRANCH_NAME=$(echo $GITHUB_REF | grep -oP '(?<=refs\/heads\/).*')
         rm .gitignore
+        rm .travis.yml
+        rm .composer.json
+        rm .gitignore
+        rm .phpcs.xml.dist
+        rm -R tests
+        rm -R .github
         git config --global user.email "michael@krokedil.se"
         git config --global user.name "MichaelBengtsson"
         git remote set-url origin https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git
