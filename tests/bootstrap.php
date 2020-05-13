@@ -113,7 +113,7 @@ class Krokedil_Unit_Tests_Bootstrap {
 		$this->plugin_dir = dirname( $this->tests_dir );
 
 		// plugins path.
-		$this->plugins_dir = realpath( $this->plugin_dir . '..' );
+		$this->plugins_dir = realpath( $this->plugin_dir . DIRECTORY_SEPARATOR . '..' );
 
 		// wordpress-tests-lib.
 		$this->wp_tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
@@ -129,10 +129,11 @@ class Krokedil_Unit_Tests_Bootstrap {
 	public function load_plugin() {
 		if ( ! empty( $this->dependencies ) ) {
 			foreach ( $this->dependencies as $dir => $plugin_file ) {
-				require_once '/woocommece/woocommerce.php;';
+				echo $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
+				require_once $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
 			}
 		}
-		require_once 'main/travis-tests.php';
+		require_once $this->plugin_dir . DIRECTORY_SEPARATOR . $this->config['name'];
 	}
 
 	/**
