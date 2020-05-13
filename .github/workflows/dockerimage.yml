@@ -63,6 +63,7 @@ jobs:
 
     - name: Install PHPUnit
       run: | 
+        tests/bin/phpunit.sh
         composer global require "phpunit/phpunit=${{ matrix.phpunit }}"
 
     - name: Run PHPUnit
