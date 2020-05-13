@@ -21,7 +21,7 @@ jobs:
       ports:
       - 80
       volumes:
-      - gh:/var/www/html
+      - /var/www/html
     services:
       mysql:
         image: mysql:${{ matrix.mysql }}
@@ -30,7 +30,7 @@ jobs:
         ports:
         - 3306
         volumes:
-        - gh/mysql:/var/lib/mysql
+        - mysql:/var/lib/mysql
     steps:
     - name: Set up container
       run: |
