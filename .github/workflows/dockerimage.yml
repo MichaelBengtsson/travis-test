@@ -3,14 +3,12 @@ on: [push]
 
 jobs:
   build:
-    name: PHPUnit
+    name: Latest WP - 4.1.0 WC
     strategy:
       matrix:
         php: [7.3]
-        wordpress: [5.2.2]
+        wordpress: [latest]
         woocommerce: [4.1.0]
-        phpunit: [7.5.15]
-        wpcs: [2.1.1]
     runs-on: ubuntu-latest
     container:
       image: chriszarate/wordpress-phpunit:6.0.6
@@ -31,12 +29,84 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: woocommerce/woocommerce
-        ref: 4.1.0
+        ref: ${{ matrix.woocommerce }}
         path: woocommerce
     - name: Install WP Testsuite
       run: |
         chmod +x main/tests/bin/install-wp-tests.sh
-        ./main/tests/bin/install-wp-tests.sh wordpress_test root password mysql latest true
+        ./main/tests/bin/install-wp-tests.sh wordpress_test root password mysql ${{ matrix.wordpress }} true
     - name: Run PHPUnit
       run: |
         phpunit -c main/phpunit.xml
+  build:
+    name: Latest WP - 4.0.0 WC
+    strategy:
+      matrix:
+        php: [7.3]
+        wordpress: [latest]
+        woocommerce: [4.0.0]
+    runs-on: ubuntu-latest
+    container:
+      image: chriszarate/wordpress-phpunit:6.0.6
+      volumes:
+        - "testsuite:/tmp"
+    services:
+      mysql:
+        image: mariadb:10.2
+        env:
+          MYSQL_DATABASE: "wordpress_test"
+          MYSQL_ROOT_PASSWORD: "password"
+    steps:
+    - name: Settup repo
+      uses: actions/checkout@v2
+      with:
+        path: main
+    - name: Settup WooCommerce
+      uses: actions/checkout@v2
+      with:
+        repository: woocommerce/woocommerce
+        ref: ${{ matrix.woocommerce }}
+        path: woocommerce
+    - name: Install WP Testsuite
+      run: |
+        chmod +x main/tests/bin/install-wp-tests.sh
+        ./main/tests/bin/install-wp-tests.sh wordpress_test root password mysql ${{ matrix.wordpress }} true
+    - name: Run PHPUnit
+      run: |
+        phpunit -c main/phpunit.xml
+build:
+  name: Latest WP - 3.9.0 WC
+  strategy:
+    matrix:
+      php: [7.3]
+      wordpress: [latest]
+      woocommerce: [3.9.0]
+  runs-on: ubuntu-latest
+  container:
+    image: chriszarate/wordpress-phpunit:6.0.6
+    volumes:
+      - "testsuite:/tmp"
+  services:
+    mysql:
+      image: mariadb:10.2
+      env:
+        MYSQL_DATABASE: "wordpress_test"
+        MYSQL_ROOT_PASSWORD: "password"
+  steps:
+  - name: Settup repo
+    uses: actions/checkout@v2
+    with:
+      path: main
+  - name: Settup WooCommerce
+    uses: actions/checkout@v2
+    with:
+      repository: woocommerce/woocommerce
+      ref: ${{ matrix.woocommerce }}
+      path: woocommerce
+  - name: Install WP Testsuite
+    run: |
+      chmod +x main/tests/bin/install-wp-tests.sh
+      ./main/tests/bin/install-wp-tests.sh wordpress_test root password mysql ${{ matrix.wordpress }} true
+  - name: Run PHPUnit
+    run: |
+      phpunit -c main/phpunit.xml
