@@ -90,8 +90,7 @@ class Krokedil_Unit_Tests_Bootstrap {
 		// activate plugin.
 		tests_add_filter( 'muplugins_loaded', array( $this, 'load_plugin' ) );
 
-		tests_add_filter( 'setup_theme', array( $this, 'install_wc' ) );
-
+		// tests_add_filter( 'setup_theme', array( $this, 'install_wc' ) );
 		// load the WP testing environment.
 		require_once $this->wp_tests_dir . '/includes/bootstrap.php';
 
