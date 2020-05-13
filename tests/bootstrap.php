@@ -129,10 +129,10 @@ class Krokedil_Unit_Tests_Bootstrap {
 	public function load_plugin() {
 		if ( ! empty( $this->dependencies ) ) {
 			foreach ( $this->dependencies as $dir => $plugin_file ) {
-				require_once '/__w/travistest/travistest/woocommerce/woocommerce.php';
+				// require_once '/__w/travistest/travistest/woocommerce/woocommerce.php';
 			}
 		}
-		require_once '/__w/travistest/travistest/main/travis-test.php';
+		// require_once '/__w/travistest/travistest/main/travis-test.php';
 	}
 
 	/**
