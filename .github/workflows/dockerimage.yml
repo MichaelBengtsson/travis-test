@@ -21,7 +21,7 @@ jobs:
       ports:
       - 80
       volumes:
-      - ${{GITHUB_WORKSPACE}}:/var/www/html
+      - gh:/var/www/html
     services:
       mysql:
         image: mysql:${{ matrix.mysql }}
@@ -86,7 +86,7 @@ jobs:
 
     - name: Run PHPUnit
       run: |
-        ~/.composer/vendor/bin/phpunit ${{GITHUB_WORKSPACE}}
+        ~/.composer/vendor/bin/phpunit gh
 
     - name: Install PHPCS with WordPress Coding Standards
       run: |
@@ -94,4 +94,6 @@ jobs:
     
     - name: Run PHPCS Coding Standards
       run: |
-        ~/.composer/vendor/bin/phpcs ${{GITHUB_WORKSPACE}}
+        ~/.composer/vendor/bin/phpcs gh
+  volumes:
+    gh: {}
