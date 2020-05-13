@@ -23,9 +23,10 @@ jobs:
           MYSQL_DATABASE: "wordpress_test"
           MYSQL_ROOT_PASSWORD: "password"
     steps:
-    - name: Testing
+    - name: Settup repositories
       uses: actions/checkout@v2
       with:
         repository: woocommerce/woocommerce
+    - name: Testing
       run: |
-        ls
+        ls -la
