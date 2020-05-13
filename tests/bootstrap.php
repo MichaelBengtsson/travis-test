@@ -129,10 +129,11 @@ class Krokedil_Unit_Tests_Bootstrap {
 	public function load_plugin() {
 		if ( ! empty( $this->dependencies ) ) {
 			foreach ( $this->dependencies as $dir => $plugin_file ) {
-				echo $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
+				echo PHP_EOL . $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file . PHP_EOL;
 				require_once $this->plugins_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
 			}
 		}
+		echo PHP_EOL . $this->plugin_dir . DIRECTORY_SEPARATOR . $this->config['name'] . PHP_EOL;
 		require_once $this->plugin_dir . DIRECTORY_SEPARATOR . $this->config['name'];
 	}
 
