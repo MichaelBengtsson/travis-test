@@ -63,6 +63,7 @@ jobs:
 
     - name: Install PHPUnit
       run: | 
+        chmod +x tests/bin/phpunit.sh
         tests/bin/phpunit.sh
         composer global require "phpunit/phpunit=${{ matrix.phpunit }}"
 
