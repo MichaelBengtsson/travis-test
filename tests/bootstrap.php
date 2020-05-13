@@ -188,8 +188,6 @@ class Krokedil_Unit_Tests_Bootstrap {
 	}
 
 	public function install_wc() {
-		require_once $this->plugins_dir . DIRECTORY_SEPARATOR . 'woocommerce' . DIRECTORY_SEPARATOR . 'includes/class-wc-install.php';
-
 		WC_Install::install();
 
 		// Initialize the WC API extensions.
