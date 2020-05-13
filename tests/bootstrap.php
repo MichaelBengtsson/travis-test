@@ -129,11 +129,10 @@ class Krokedil_Unit_Tests_Bootstrap {
 	public function load_plugin() {
 		if ( ! empty( $this->dependencies ) ) {
 			foreach ( $this->dependencies as $dir => $plugin_file ) {
-				echo $this->wp_tests_dir . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $plugin_file;
-				require_once '/tmp/wordpress/wp-content/plugins/woocommerce/woocommerce.php';
+				require_once '/woocommece/woocommerce.php;';
 			}
 		}
-		require_once $this->plugin_dir . DIRECTORY_SEPARATOR . $this->config['name'];
+		require_once 'main/travis-tests.php';
 	}
 
 	/**
