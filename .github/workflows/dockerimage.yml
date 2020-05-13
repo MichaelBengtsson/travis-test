@@ -36,10 +36,6 @@ jobs:
       run: |
         chmod +x main/tests/bin/install-wp-tests.sh
         ./main/tests/bin/install-wp-tests.sh wordpress_test root password mysql latest true
-    - name: Check if wp-install exists.
-      run: |
-        cd woocommerce/includes
-        ls -la
     - name: Run PHPUnit
       run: |
         phpunit -c main/phpunit.xml

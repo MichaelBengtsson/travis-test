@@ -179,6 +179,7 @@ class Krokedil_Unit_Tests_Bootstrap {
 	 * @since 1.0.0
 	 */
 	public static function get_instance(): \Krokedil_Unit_Tests_Bootstrap {
+		require_once $this->plugins_dir . DIRECTORY_SEPARATOR . 'woocommerce' . DIRECTORY_SEPARATOR . 'includes/class-wc-install.php';
 
 		if ( null === self::$instance ) {
 			self::$instance = new self();
@@ -188,6 +189,7 @@ class Krokedil_Unit_Tests_Bootstrap {
 	}
 
 	public function install_wc() {
+
 		WC_Install::install();
 
 		// Initialize the WC API extensions.
