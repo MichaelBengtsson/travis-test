@@ -1,9 +1,9 @@
-name: CI Build
+name: CI Test
 on: [push]
 
 jobs:
   build:
-    name: Build
+    name: PHPUnit
     strategy:
       matrix:
         php: [7.3]
@@ -25,4 +25,4 @@ jobs:
     steps:
     - name: Testing
       run: |
-        ls
+        phpunit
