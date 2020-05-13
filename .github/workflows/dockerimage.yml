@@ -34,4 +34,4 @@ jobs:
         path: woocommerce
     - name: Testing
       run: |
-        ls -la
+        ls -la /main
