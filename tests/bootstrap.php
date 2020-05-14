@@ -191,7 +191,7 @@ class Krokedil_Unit_Tests_Bootstrap {
 		WC_Install::install();
 
 		// Only if WC is 4.0 or higher.
-		if ( version_compare( WC_VERSION, '4.0.0', >= ) {
+		if ( version_compare( WC_VERSION, '4.0.0', '>=' ) {
 			// Initialize the WC API extensions.
 			\Automattic\WooCommerce\Admin\Install::create_tables();
 			\Automattic\WooCommerce\Admin\Install::create_events();
