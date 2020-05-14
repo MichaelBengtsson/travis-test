@@ -142,6 +142,76 @@ jobs:
     - name: Run PHPUnit
       run: |
         phpunit -c main/phpunit.xml
+  WC_3-7-0:
+    name: Latest WP - 3.7.0 WC
+    strategy:
+      matrix:
+        wordpress: [latest]
+        woocommerce: [3.7.0]
+    runs-on: ubuntu-latest
+    container:
+      image: chriszarate/wordpress-phpunit:6.0.6
+      volumes:
+        - "testsuite:/tmp"
+    services:
+      mysql:
+        image: mariadb:10.2
+        env:
+          MYSQL_DATABASE: "wordpress_test"
+          MYSQL_ROOT_PASSWORD: "password"
+    steps:
+    - name: Settup repo
+      uses: actions/checkout@v2
+      with:
+        path: main
+    - name: Settup WooCommerce
+      uses: actions/checkout@v2
+      with:
+        repository: woocommerce/woocommerce
+        ref: ${{ matrix.woocommerce }}
+        path: woocommerce
+    - name: Install WP Testsuite
+      run: |
+        chmod +x main/tests/bin/install-wp-tests.sh
+        ./main/tests/bin/install-wp-tests.sh wordpress_test root password mysql ${{ matrix.wordpress }} true
+    - name: Run PHPUnit
+      run: |
+        phpunit -c main/phpunit.xml
+  WC_3-6-0:
+    name: Latest WP - 3.6.0 WC
+    strategy:
+      matrix:
+        wordpress: [latest]
+        woocommerce: [3.6.0]
+    runs-on: ubuntu-latest
+    container:
+      image: chriszarate/wordpress-phpunit:6.0.6
+      volumes:
+        - "testsuite:/tmp"
+    services:
+      mysql:
+        image: mariadb:10.2
+        env:
+          MYSQL_DATABASE: "wordpress_test"
+          MYSQL_ROOT_PASSWORD: "password"
+    steps:
+    - name: Settup repo
+      uses: actions/checkout@v2
+      with:
+        path: main
+    - name: Settup WooCommerce
+      uses: actions/checkout@v2
+      with:
+        repository: woocommerce/woocommerce
+        ref: ${{ matrix.woocommerce }}
+        path: woocommerce
+    - name: Install WP Testsuite
+      run: |
+        chmod +x main/tests/bin/install-wp-tests.sh
+        ./main/tests/bin/install-wp-tests.sh wordpress_test root password mysql ${{ matrix.wordpress }} true
+    - name: Run PHPUnit
+      run: |
+        phpunit -c main/phpunit.xml
   PHPCS:
     name: PHPCS
     runs-on: ubuntu-latest
