@@ -189,11 +189,8 @@ class Krokedil_Unit_Tests_Bootstrap {
 
 	public function install_wc() {
 		WC_Install::install();
-		// Only if WC is 4.0 or higher.
-		if ( class_exists( '\Automattic\WooCommerce\Admin\Install' ) ) {
-			\Automattic\WooCommerce\Admin\Install::create_tables();
-			\Automattic\WooCommerce\Admin\Install::create_events();
-		}
+		\Automattic\WooCommerce\Admin\Install::create_tables();
+		\Automattic\WooCommerce\Admin\Install::create_events();
 		// Reload capabilities after install, see https://core.trac.wordpress.org/ticket/28374.
 		if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
 			$GLOBALS['wp_roles']->reinit();
