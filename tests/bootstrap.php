@@ -189,7 +189,6 @@ class Krokedil_Unit_Tests_Bootstrap {
 
 	public function install_wc() {
 		WC_Install::install();
-		$wc_version = WC_VERSION;
 		// Only if WC is 4.0 or higher.
 		// if ( version_compare( WC_VERSION, '4.0.0', '>=' ) {
 			// Initialize the WC API extensions.
