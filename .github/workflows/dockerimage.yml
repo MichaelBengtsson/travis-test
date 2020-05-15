@@ -1,5 +1,8 @@
 name: CI Test
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   WC_4-1-0:
