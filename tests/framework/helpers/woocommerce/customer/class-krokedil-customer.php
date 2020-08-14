@@ -14,7 +14,7 @@
  *
  * This helper class should ONLY be used for unit tests!.
  */
-class Krokedil_Customer implements IKrokedil_Customer {
+class Krokedil_Customer implements IKrokedil_Customer{
 
 	/**
 	 * @var array
