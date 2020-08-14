@@ -89,7 +89,7 @@ jobs:
         - "testsuite:/tmp"
     services:
       mysql:
-        image: mysql:10.2
+        image: mariadb:10.2
         env:
           MYSQL_DATABASE: "wordpress_test"
           MYSQL_ROOT_PASSWORD: "password"
