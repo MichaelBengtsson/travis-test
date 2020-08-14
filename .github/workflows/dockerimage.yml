@@ -206,7 +206,7 @@ jobs:
         composer global require woocommerce/woocommerce-sniffs
     - name: Run PHPCS Coding Standards
       run: |
-          ~/.composer/vendor/bin/phpcs main --standard=WordPress --colors --encoding=utf-8 -p `git ls-files --others --exclude-standard -c|grep \.php`
+          ~/.composer/vendor/bin/phpcs main --standard=WordPress --extension=php .
   build:
     needs: [WC_4-1-0, WC_4-0-0, PHPCS]
     name: Build
