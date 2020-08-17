@@ -2,7 +2,7 @@ name: CI Test
 on:
   push:
     branches:
-      - develop
+      - develop-github-actions
       - master
 
 jobs:
