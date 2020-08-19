@@ -830,7 +830,11 @@ class Test_Order extends WP_UnitTestCase {
 		$order = ( new Krokedil_Order() )->create();
 		$order->set_total( 100 );
 		$order->set_currency( 'USD' );
-		$this->assertEquals( '<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#36;</span>100.00</span>', $order->get_formatted_order_total() );
+		if ( '4.4.0' === WC()->version ) {
+			$this->assertEquals( '<span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&#36;</span>100.00</bdi></span>', $order->get_formatted_order_total() );
+		} else {
+			$this->assertEquals( '<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#36;</span>100.00</span>', $order->get_formatted_order_total() );
+		}
 	}
 
 	/**
