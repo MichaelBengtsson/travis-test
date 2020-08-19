@@ -56,7 +56,7 @@ jobs:
     name: PHPCS
     runs-on: ubuntu-latest
     container:
-      image: php:${{ matrix.php }}-apache
+      image: php:7.0.0-apache
     steps:
       - name: Settup repo
         uses: actions/checkout@v2
