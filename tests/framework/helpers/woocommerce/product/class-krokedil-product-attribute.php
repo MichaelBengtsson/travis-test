@@ -1,10 +1,13 @@
 <?php // phpcs:ignore
 /**
+ * Helper class for product attributes.
  *
+ * @package Framework\Helpers\WooCommerce\Product
+ * @author Krokedil
  */
 
 /**
- *
+ * Class Krokedil_Product_Attribute
  */
 class Krokedil_Product_Attribute {
 
@@ -34,7 +37,7 @@ class Krokedil_Product_Attribute {
 	 *
 	 * @var array $attribute_data
 	 */
-	protected $attribute_data = [];
+	protected $attribute_data = array();
 
 
 	/**
@@ -144,7 +147,7 @@ class Krokedil_Product_Attribute {
 			);
 
 			// Set product attributes global.
-			$wc_product_attributes = [];
+			$wc_product_attributes = array();
 
 			foreach ( wc_get_attribute_taxonomies() as $taxonomy ) {
 				$wc_product_attributes[ wc_attribute_taxonomy_name( $taxonomy->attribute_name ) ] = $taxonomy;
@@ -156,7 +159,7 @@ class Krokedil_Product_Attribute {
 			'attribute_name'     => $attribute->name,
 			'attribute_taxonomy' => $attribute->slug,
 			'attribute_id'       => $attribute_id,
-			'term_ids'           => [],
+			'term_ids'           => array(),
 		);
 
 		foreach ( $terms as $term ) {
