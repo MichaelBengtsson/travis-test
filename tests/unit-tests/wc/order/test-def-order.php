@@ -32,13 +32,13 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test order id
 	 */
-	/*
 	public function test_get_id() {
 		$kro_helper_order = new Krokedil_Order();
 		$order            = $kro_helper_order->create();
 		$id               = $kro_helper_order->get_order_id();
 		$this->assertEquals( $id, $order->get_id() );
-	}*/
+
+	}
 
 	/**
 	 * Test parent id
@@ -55,14 +55,13 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test order number
 	 */
-	/*
 	public function test_get_order_number() {
 		$order_helper = new Krokedil_Order();
 
 		$order = $order_helper->create();
 		$id    = $order_helper->get_order_id();
 		$this->assertEquals( $id, $order->get_order_number() );
-	}*/
+	}
 
 	/**
 	 * Test order key
@@ -88,7 +87,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test version
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_get_version() {
 		$order   = ( new Krokedil_Order() )->create();
@@ -100,7 +99,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test  prices include tax
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_get_prices_include_tax() {
 		$order = ( new Krokedil_Order() )->create();
@@ -111,7 +110,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test date created
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_get_date_created() {
 		$order = ( new Krokedil_Order() )->create();
@@ -122,7 +121,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test date modified
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_get_date_modified() {
 		$order = ( new Krokedil_Order() )->create();
@@ -228,8 +227,8 @@ class Test_Order extends WP_UnitTestCase {
 	 * Test: remove_order_items
 	 */
 	public function test_remove_order_items() {
-		 $product = ( new Krokedil_Simple_Product() )->create();
-		$item_1   = new WC_Order_Item_Product();
+		$product = ( new Krokedil_Simple_Product() )->create();
+		$item_1  = new WC_Order_Item_Product();
 		$item_1->set_props(
 			array(
 				'product'  => $product,
@@ -244,7 +243,7 @@ class Test_Order extends WP_UnitTestCase {
 			)
 		);
 
-		$order = ( new Krokedil_Order( $product, null, [ $item_1, $item_2 ] ) )->create();
+		$order = ( new Krokedil_Order( $product, null, array( $item_1, $item_2 ) ) )->create();
 		$order->save();
 		$this->assertCount( 2, $order->get_items() );
 		$order->remove_order_items();
@@ -271,7 +270,7 @@ class Test_Order extends WP_UnitTestCase {
 				'quantity' => 2,
 			)
 		);
-		$order = ( new Krokedil_Order( $product1, null, [ $item_1, $item_2 ] ) )->create();
+		$order = ( new Krokedil_Order( $product1, null, array( $item_1, $item_2 ) ) )->create();
 
 		$order->save();
 		$this->assertCount( 2, $order->get_items() );
@@ -316,10 +315,10 @@ class Test_Order extends WP_UnitTestCase {
 				'discount_tax' => 5,
 			)
 		);
-		$items = [];
+		$items = array();
 		$item->save();
 		$items[] = $item;
-		$order   = ( new Krokedil_Order( null, null, [ $item ], [], null ) )->create();
+		$order   = ( new Krokedil_Order( null, null, array( $item ), array(), null ) )->create();
 		$this->assertCount( 1, $order->get_coupon_codes() );
 
 	}
@@ -606,7 +605,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test: calculate taxes is vat excempt
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_calculate_taxes_is_vat_excempt() {
 		update_option( 'woocommerce_calc_taxes', 'yes' );
@@ -740,7 +739,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test key is valid
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_key_is_valid() {
 		$order = ( new Krokedil_Order() )->create();
@@ -753,7 +752,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test has free item
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_has_free_item() {
 		$order = ( new Krokedil_Order() )->create();
@@ -835,6 +834,7 @@ class Test_Order extends WP_UnitTestCase {
 		} else {
 			$this->assertEquals( '<span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#36;</span>100.00</span>', $order->get_formatted_order_total() );
 		}
+
 	}
 
 	/**
@@ -1275,7 +1275,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test cart hash
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_get_cart_hash() {
 		$order     = ( new Krokedil_Order() )->create();
@@ -1657,7 +1657,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test: get_remaining_refund_amount
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_get_remaining_refund_amount() {
 		$order = new WC_Order();
@@ -1676,7 +1676,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test that if an exception is thrown when creating a refund, the refund is deleted from database.
 	 *
-	 * @throws Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_refund_exception() {
 		$order = ( new Krokedil_Order() )->create();
@@ -1696,7 +1696,7 @@ class Test_Order extends WP_UnitTestCase {
 	/**
 	 * Test the coupon usage limit based on guest orders with emails only.
 	 *
-	 * @throws WC_Data_Exception
+	 * @throws WC_Data_Exception May throw exception if data is invalid.
 	 */
 	public function test_coupon_email_usage_limit() {
 		// Orders .
