@@ -54,7 +54,7 @@ jobs:
           phpunit -c main/phpunit.xml
   PHPCS:
     name: PHPCS
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     container:
       image: php:${{ matrix.php }}-apache
     steps:
