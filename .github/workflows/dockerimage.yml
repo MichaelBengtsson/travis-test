@@ -82,7 +82,7 @@ jobs:
   build:
     needs: [Test-Plugin, PHPCS]
     name: Build
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: Settup repo
         uses: actions/checkout@v2
