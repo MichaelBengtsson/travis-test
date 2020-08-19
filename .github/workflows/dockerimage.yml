@@ -6,26 +6,30 @@ on:
       - master
 
 jobs:
-  WC:
-    name: Latest WP
+  Test-Plugin:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         wordpress: [latest]
-        woocommerce: [4.3.2, 4.3.1, 4.3.0, 4.2.2, 4.2.1, 4.2.0, 4.1.0, 3.9.0, 3.8.0, 3.7.0]
-    runs-on: ubuntu-latest
+        woocommerce: [4.4.0, 4.3.3, 4.3.2, 4.3.1, 4.3.0, 4.2.2, 4.1.1, 4.1.0, 4.0.0, 3.9.0, 3.8.0, 3.7.0]
+        os: [ubuntu-latest]
     container:
       image: chriszarate/wordpress-phpunit:6.0.6
       volumes:
         - "testsuite:/tmp"
     services:
       mysql:
-        image: mariadb:10.2.33
+        image: mysql:5.7
         env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: wordpress_test
           MYSQL_USER: wp_user
           MYSQL_PASSWORD: wp_pass
-          MYSQL_ROOT_PASSWORD: "root"
-          options: --health-cmd="mysqladmin ping" --health-interval=40s --health-timeout=30s --health-retries=3
+        ports:
+          - "33060:3306"
+        volumes:
+          - "${{ github.workspace }}/tests/bin/mysql:/docker-entrypoint-initdb.d"
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Settup repo
         uses: actions/checkout@v2
@@ -40,7 +44,9 @@ jobs:
       - name: Install WP Testsuite
         run: |
           chmod +x ./main/tests/bin/install-wp-tests.sh
-          ./main/tests/bin/install-wp-tests.sh wordpress_test wp_user wp_pass mysql ${{ matrix.wordpress }} true
+          ./main/tests/bin/install-wp-tests.sh wordpress_test wp_user wp_pass mysql ${{ matrix.wordpress }}
+        env:
+          MYSQL_HOST: mysql
       - name: Run PHPUnit
         run: |
           phpunit -c main/phpunit.xml
