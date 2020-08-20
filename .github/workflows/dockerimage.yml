@@ -7,7 +7,7 @@ on:
 
 jobs:
   Test-Plugin:
-    name: Test plugin with wp-${{ matrix.wordpress }} and wc-${{ matrix.woocommerce }}
+    name: Test plugin with wc-${{ matrix.woocommerce }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
