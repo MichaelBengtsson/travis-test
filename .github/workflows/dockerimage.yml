@@ -4,7 +4,8 @@ on:
     branches:
       - develop-github-actions
       - master
-
+    pull_request:
+      types: [closed]
 jobs:
   Test-Plugin:
     name: Test plugin with wc-${{ matrix.woocommerce }}
