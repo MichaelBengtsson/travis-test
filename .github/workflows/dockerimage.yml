@@ -77,5 +77,8 @@ jobs:
           composer global require woocommerce/woocommerce-sniffs
       - name: Run PHPCS Coding Standards
         run: |
-          ls -la ~/.composer/vendor/bin/
-          ~/.composer/vendor/bin/phpcs main --standard=WordPress --extensions=php --ignore=config.php,bootstrap.php .
+          ls -la ~/.config/
+          ls -la ~/.config/composer/
+          ls -la ~/.config/composer/vendor/
+          ls -la ~/.config/composer/vendor/bin/
+          ~/.config/composer/vendor/bin/phpcs main --standard=WordPress --extensions=php --ignore=config.php,bootstrap.php .
