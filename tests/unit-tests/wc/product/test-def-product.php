@@ -16,10 +16,10 @@ class Def_Product extends WP_UnitTestCase {
 	 */
 	public function test_simple_product() {
 		$simple_product = ( new Krokedil_Simple_Product(
-			[
+			array(
 				'name'          => 'Dummy Product',
 				'regular_price' => 1000,
-			]
+			)
 		) )->create();
 
 		// test instance.
@@ -41,10 +41,10 @@ class Def_Product extends WP_UnitTestCase {
 	 */
 	public function test_external_product() {
 		$external_product = ( new Krokedil_External_Product(
-			[
+			array(
 				'sale_price' => 8,
 				'name'       => 'Dummy External Product',
-			]
+			)
 		) )->create();
 		// test instance.
 		$this->assertInstanceOf( WC_Product_External::class, $external_product );
@@ -57,11 +57,11 @@ class Def_Product extends WP_UnitTestCase {
 	 */
 	public function test_grouped_product() {
 		$product = ( new Krokedil_Grouped_Product(
-			[
+			array(
 				'regular_price' => 2000,
 				'sale_price'    => 15000,
 				'name'          => 'Dummy grouped product',
-			]
+			)
 		) )->create();
 
 		$this->assertSame( 'Dummy grouped product', $product->get_title() );
@@ -72,27 +72,26 @@ class Def_Product extends WP_UnitTestCase {
 	 */
 	public function test_variable_product() {
 		$product = ( new Krokedil_Variable_Product(
-			[
+			array(
 				'name' => 'Dummy Variable Product',
-			]
+			)
 		) )->create();
 
 		$this->assertInstanceOf( WC_Product_Variable::class, $product );
 
-
 		$this->assertSame(
-			[
-				'pa_size'   => [
+			array(
+				'pa_size'   => array(
 					'huge',
 					'large',
 					'small',
-				],
-				'pa_colour' => [
+				),
+				'pa_colour' => array(
 					'blue',
 					'green',
 					'red',
-				],
-			],
+				),
+			),
 			$product->get_variation_attributes()
 		);
 

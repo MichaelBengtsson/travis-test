@@ -1,6 +1,9 @@
 <?php
 /**
+ * Helper class for shipping.
  *
+ * @package Framework\Helpers\WooCommerce\Shipping
+ * @author Krokedil
  */
 
 /**
@@ -9,7 +12,7 @@
 class Krokedil_WC_Shipping {
 
 	/**
-	 *
+	 * Creates flat rate.
 	 */
 	public static function create_simple_flat_rate() {
 		$flat_rate_settings = array(
@@ -22,7 +25,7 @@ class Krokedil_WC_Shipping {
 		);
 
 		update_option( 'woocommerce_flat_rate_settings', $flat_rate_settings );
-		update_option( 'woocommerce_flat_rate', [] );
+		update_option( 'woocommerce_flat_rate', array() );
 		WC_Cache_Helper::get_transient_version( 'shipping', true );
 		WC()->shipping()->load_shipping_methods();
 	}
